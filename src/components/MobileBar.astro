@@ -1,0 +1,9 @@
+---
+// Bottom bar on phones (R-UX-03: replaces the third-party widget). Shown by src/scripts/site.ts once the hero buttons leave the screen.
+import Button from "./Button.astro";
+import { PHONE, TELEGRAM } from "../data/site";
+---
+<div class="mbar" data-mbar data-rec="R-UX-03" role="region" aria-label="Швидкий зв'язок">
+  <Button href={PHONE.href} variant="yellow" icon="phone" label={`Подзвонити ${PHONE.label}`}>Подзвонити</Button>
+  <Button href={TELEGRAM} variant="outline" icon="telegram" label="Написати в Telegram">Telegram</Button>
+</div>

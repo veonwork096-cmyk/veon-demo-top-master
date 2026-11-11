@@ -1,0 +1,27 @@
+---
+// «Плашка»: parallelogram button like the MASTER plate of the logo (skew on a pseudo-element, text stays upright).
+// variant: yellow — primary on dark; ink — primary on light/yellow; outline — secondary (2 px, current text colour).
+import Icon from "./Icon.astro";
+interface Props {
+  href: string;
+  variant?: "yellow" | "ink" | "outline";
+  icon?: "phone" | "telegram" | "mail";
+  sub?: string;
+  block?: boolean;
+  rec?: string;
+  class?: string;
+  label?: string;
+}
+const { href, variant = "yellow", icon, sub, block = false, rec, class: cls, label } = Astro.props;
+const external = href.startsWith("http");
+---
+<a
+  href={href}
+  class:list={["btn", `btn--${variant}`, { "btn--block": block, "btn--sub": !!sub }, cls]}
+  data-rec={rec}
+  aria-label={label}
+  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+>
+  {icon && <Icon name={icon} size={20} class="btn__icon" />}
+  <span class="btn__text"><slot />{sub && <span class="btn__sub">{sub}</span>}</span>
+</a>

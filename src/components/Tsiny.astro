@@ -1,0 +1,24 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import { PRICES, PHONE } from "../data/site";
+---
+<Section id="tsiny" rec="R-UX-09,S-R007,G-R002" class="section tsiny surface-paper">
+  <div class="container tsiny__grid">
+    <h2 class="section__title tsiny__title">Ціни на ремонт турбін — від</h2>
+    <dl class="price-list">
+      {PRICES.map((p) => (
+        <div class="price-row">
+          <dt class="price-row__name">{p.name}</dt>
+          <dd class="price-row__value"><span class="price-row__from">від</span> {p.value} <span class="price-row__cur">грн</span></dd>
+        </div>
+      ))}
+    </dl>
+    <aside class="tsiny__aside" aria-label="Умови" data-rec="R-UX-07">
+      <p class="tsiny__diag"><strong>Діагностика — безкоштовно*</strong></p>
+      <p class="muted">* За умови проведення ремонту в нас.</p>
+      <p class="lead">Точну ціну назве майстер після діагностики.</p>
+      <Button href={PHONE.href} variant="ink" icon="phone" sub={PHONE.label}>Подзвонити</Button>
+    </aside>
+  </div>
+</Section>

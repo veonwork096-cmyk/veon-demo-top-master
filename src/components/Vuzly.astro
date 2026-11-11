@@ -1,0 +1,45 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import FutureLink from "./FutureLink.astro";
+import { UNITS, PHONE, FUTURE } from "../data/site";
+---
+<Section id="vuzly" rec="R-UX-04" class="section vuzly surface-dark-2">
+  <div class="container">
+    <h2 class="section__title vuzly__title">Ремонт вузлів: повний цикл в одному сервісі</h2>
+  </div>
+  <ul class="vuzly__list">
+    {UNITS.map((u) => (
+      <li class="bay" id={`vuzol-${u.id}`} data-reveal>
+        <article class="container bay__grid" aria-labelledby={`bay-${u.id}`}>
+          <div class="bay__head">
+            <h3 class="bay__name" id={`bay-${u.id}`}>{u.name}</h3>
+            {u.price ? (
+              <p class="bay__price" data-rec="R-UX-09"><span class="bay__price-label">{u.price.label}</span> <span class="bay__price-value">від {u.price.value} грн</span></p>
+            ) : (
+              <p class="bay__price bay__price--note">{u.priceNote}</p>
+            )}
+          </div>
+          <div class="bay__cols">
+            <details class="bay__col bay__signs" data-signs open>
+              <summary class="bay__label">Ознаки</summary>
+              <p>{u.signs}</p>
+            </details>
+            <div class="bay__col">
+              <h4 class="bay__label">Що робимо</h4>
+              <p>{u.work}</p>
+            </div>
+            <div class="bay__col" data-rec="R-UX-07">
+              <h4 class="bay__label">Термін і гарантія</h4>
+              <p>{u.terms}</p>
+            </div>
+          </div>
+          <div class="bay__actions">
+            <Button href={PHONE.href} variant="yellow" icon="phone" sub={PHONE.label}>Подзвонити</Button>
+            <FutureLink note={FUTURE}>Детальніше про послугу</FutureLink>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ul>
+</Section>

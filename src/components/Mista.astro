@@ -1,0 +1,59 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import fasad from "../assets/sto-fasad.png";
+import { CITIES, PHONE, ADDRESS, HOURS, FUTURE } from "../data/site";
+---
+<Section id="mista" rec="R-UX-05" class="section mista surface-light">
+  <div class="container mista__grid">
+    <div class="mista__main">
+      <h2 class="section__title">30 міст мережі</h2>
+      <div class="city-filter" role="search" aria-label="Пошук міста">
+        <label class="city-filter__label" for="city-input">Знайдіть своє місто</label>
+        <div class="city-filter__field">
+          <Icon name="search" size={22} class="city-filter__icon" />
+          <input class="city-filter__input" id="city-input" type="search" placeholder="Ваше місто" autocomplete="off" spellcheck="false" aria-describedby="city-status" data-city-input />
+        </div>
+        <p class="city-filter__status" id="city-status" role="status" aria-live="polite" data-city-status></p>
+      </div>
+      <ul class="cities" aria-label="Міста мережі Top-master">
+        {CITIES.map((c) => (
+          <li class="city" data-city={c}>
+            {c === ADDRESS.city
+              ? <a class="city__name city__name--link" href="#sto-kyiv">{c}</a>
+              : <FutureLink note={FUTURE} class="city__name">{c}</FutureLink>}
+          </li>
+        ))}
+      </ul>
+      <div class="city-empty" hidden data-city-empty>
+        <p class="lead">Такого міста немає в мережі — надішліть турбіну Новою поштою.</p>
+        <a class="btn btn--ink" href="#poshta"><span class="btn__text">Як надіслати турбіну</span></a>
+      </div>
+      <p class="mista__note">Адресу й графік СТО у вашому місті уточнюйте в контакт-центрі: <a class="text-link" href={PHONE.href}>{PHONE.label}</a></p>
+      <p class="mista__none">Немає вашого міста? <a class="text-link" href="#poshta">Ремонт Новою поштою</a></p>
+    </div>
+    <article class="sto-card surface-paper" id="sto-kyiv" aria-labelledby="sto-kyiv-title">
+      <Picture
+        src={fasad}
+        formats={["avif", "webp"]}
+        fallbackFormat="jpg"
+        quality={80}
+        widths={[400, fasad.width]}
+        sizes="(min-width: 64em) 460px, calc(100vw - 2.5rem)"
+        alt="Фірмове СТО Top-master: чорний фасад із чотирма боксами та жовтою вивіскою TOP MASTER"
+        loading="lazy"
+        decoding="async"
+        class="sto-card__img"
+      />
+      <div class="sto-card__body">
+        <h3 class="sto-card__title" id="sto-kyiv-title">{ADDRESS.city}</h3>
+        <p class="sto-card__addr">{ADDRESS.street}</p>
+        <p class="muted">Графік СТО: {HOURS.sto.map((h) => `${h.days.toLowerCase()} ${h.time}`).join(", ")}</p>
+        <Button href={PHONE.href} variant="ink" icon="phone" sub={PHONE.label} block>Подзвонити</Button>
+      </div>
+    </article>
+  </div>
+</Section>

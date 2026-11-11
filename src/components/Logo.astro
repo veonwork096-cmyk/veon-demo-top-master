@@ -1,0 +1,21 @@
+---
+// Client logo, cropped from the header of audit/screens/home-mobile-fold.png (not redrawn; vector to be requested from the client).
+import { Picture } from "astro:assets";
+import logo from "../assets/logo-top-master.png";
+interface Props { width?: number; class?: string; eager?: boolean; }
+const { width = 150, class: cls, eager = false } = Astro.props;
+---
+<a href="#hero" class:list={["logo", cls]} aria-label="Top-master — на початок сторінки">
+  <Picture
+    src={logo}
+    formats={["avif", "webp"]}
+    fallbackFormat="png"
+    widths={[width, logo.width]}
+    sizes={`${width}px`}
+    width={width}
+    height={Math.round((width * logo.height) / logo.width)}
+    alt="TOP MASTER"
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+  />
+</a>

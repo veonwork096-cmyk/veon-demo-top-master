@@ -1,0 +1,21 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import { PHONE, TELEGRAM } from "../data/site";
+---
+<Section id="poshta" rec="R-UX-08" class="section poshta surface-yellow">
+  <div class="container poshta__grid">
+    <h2 class="poshta__title">Немає СТО поруч — надішліть турбіну Новою поштою</h2>
+    <ul class="poshta__terms">
+      <li>Доставка — за наш рахунок.</li>
+      <li>Оплата — при отриманні.</li>
+    </ul>
+    <div class="poshta__act">
+      <p class="lead">Напишіть у Telegram — менеджер підкаже, куди надіслати турбіну.</p>
+      <div class="poshta__buttons">
+        <Button href={TELEGRAM} variant="ink" icon="telegram">Написати в Telegram</Button>
+        <Button href={PHONE.href} variant="outline" icon="phone" sub={PHONE.label}>Подзвонити</Button>
+      </div>
+    </div>
+  </div>
+</Section>

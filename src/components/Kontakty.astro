@@ -1,0 +1,42 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { PHONES, TELEGRAM, EMAIL, HOURS, ADDRESS, FUTURE } from "../data/site";
+---
+<Section id="kontakty" rec="R-UX-06" class="section kontakty surface-dark">
+  <div class="container kontakty__grid">
+    <div class="kontakty__head">
+      <h2 class="section__title">Контакти</h2>
+      <p class="lead kontakty__slogan">Ваш спокій — наша турбота!</p>
+    </div>
+    <div class="kontakty__phones">
+      <ul class="phones">
+        {PHONES.map((p) => <li><a class="phone-big" href={p.href}>{p.label}</a></li>)}
+      </ul>
+      <div class="kontakty__buttons">
+        <Button href={TELEGRAM} variant="yellow" icon="telegram">Написати в Telegram</Button>
+        <a class="text-link kontakty__mail" href={`mailto:${EMAIL}`}><Icon name="mail" size={20} /><span>{EMAIL}</span></a>
+      </div>
+    </div>
+    <div class="kontakty__info">
+      <div class="info-block">
+        <h3 class="info-block__title">Контакт-центр</h3>
+        <ul>{HOURS.center.map((h) => <li>{h.days}: {h.time}</li>)}</ul>
+      </div>
+      <div class="info-block">
+        <h3 class="info-block__title">СТО</h3>
+        <ul>{HOURS.sto.map((h) => <li>{h.days}: {h.time}</li>)}</ul>
+      </div>
+      <div class="info-block">
+        <h3 class="info-block__title">Адреса</h3>
+        <address>{ADDRESS.city}, {ADDRESS.street}</address>
+      </div>
+      <div class="info-block">
+        <h3 class="info-block__title">Ваше замовлення</h3>
+        <p><FutureLink note={FUTURE}>Статус замовлення</FutureLink> <span class="muted">або запитайте в Telegram</span></p>
+      </div>
+    </div>
+  </div>
+</Section>

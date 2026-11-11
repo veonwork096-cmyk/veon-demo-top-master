@@ -1,0 +1,22 @@
+---
+import Section from "./Section.astro";
+import { EQUIPMENT } from "../data/site";
+---
+<Section id="dovira" class="section dovira surface-dark-2">
+  <div class="container dovira__grid">
+    <h2 class="section__title dovira__title">Обладнання й досвід</h2>
+    <figure class="dovira__award">
+      <blockquote class="dovira__quote"><p>За версією AvtoExpert у 2020–2021 роках нас визнано найкращим спеціалізованим сервісом з ремонту турбін.</p></blockquote>
+      <figcaption class="muted">Відзнака AvtoExpert, 2020–2021</figcaption>
+    </figure>
+    <p class="dovira__brands lead">Вантажні, легкові, мікроавтобуси, спецтехніка — 24 марки й понад 100 інших.</p>
+    <div class="dovira__equip">
+      <h3 class="dovira__equip-title">Обладнання цеху</h3>
+      <ul class="equip">
+        {EQUIPMENT.map((e) => (
+          <li class="equip__item"><strong class="equip__model">{e.model}</strong>{e.type && <span class="equip__type">{e.type}</span>}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,57 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Vuzly from "../components/Vuzly.astro";
+import Tsiny from "../components/Tsiny.astro";
+import Mista from "../components/Mista.astro";
+import Poshta from "../components/Poshta.astro";
+import Inshi from "../components/Inshi.astro";
+import Dovira from "../components/Dovira.astro";
+import Kontakty from "../components/Kontakty.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import { PHONES, EMAIL, ADDRESS } from "../data/site";
+
+const title = "Ремонт турбін, ТНВД і форсунок у 30 містах | Top-master";
+const description = "Мережа СТО Top-master: ремонт турбін, ТНВД і форсунок у 30 містах. Гарантія на турбіни до 3 років, терміновий ремонт від 6 годин.";
+
+// I-SEO-06: only the confirmed numbers; no aggregateRating
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "#org",
+      name: "Top-master",
+      legalName: "ТОВ «Автивна»",
+      email: EMAIL,
+      telephone: PHONES.map((p) => p.href.replace("tel:", "")),
+      slogan: "Ваш спокій — наша турбота!",
+    },
+    {
+      "@type": "AutoRepair",
+      name: "Top-master — СТО Київ",
+      parentOrganization: { "@id": "#org" },
+      telephone: PHONES[0].href.replace("tel:", ""),
+      address: { "@type": "PostalAddress", streetAddress: ADDRESS.street, addressLocality: ADDRESS.city, addressCountry: "UA" },
+      openingHours: "Mo-Sa 09:00-19:00",
+    },
+  ],
+};
+---
+<Base lang="uk" title={title} description={description} mainRec="R-UX-11">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header slot="header" />
+  <Hero />
+  <Vuzly />
+  <Tsiny />
+  <Mista />
+  <Poshta />
+  <Inshi />
+  <Dovira />
+  <Kontakty />
+  <Footer slot="footer" />
+  <MobileBar slot="footer" />
+</Base>
+<script src="../scripts/site.ts"></script>

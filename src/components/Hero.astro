@@ -1,0 +1,25 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+import { PHONE, TELEGRAM, HERO_FACTS } from "../data/site";
+---
+<Section id="hero" rec="R-UX-02,R-WEB-01,S-R006,G-R001" class="hero surface-dark">
+  <div class="container hero__grid">
+    <h1 class="hero__title"><span>Ремонт турбін,</span> <span>ТНВД і форсунок</span> <span>у 30 містах України</span></h1>
+    <div class="hero__act" data-hero-actions>
+      <div class="hero__buttons">
+        <Button href={PHONE.href} variant="yellow" icon="phone" sub={PHONE.label} class="hero__call">Подзвонити</Button>
+        <Button href={TELEGRAM} variant="outline" icon="telegram" class="hero__tg">Написати в Telegram</Button>
+      </div>
+      <p class="hero__hours">Контакт-центр: пн–пт 08:00–19:00, сб 09:00–14:00</p>
+    </div>
+    <div class="hero__aside">
+      <ul class="hero__facts" data-rec="R-UX-07">
+        {HERO_FACTS.map((f, i) => (
+          <li class="hero__fact" data-reveal style={`--reveal-delay:${i * 80}ms`}><strong>{f.key}</strong> — {f.rest}</li>
+        ))}
+      </ul>
+      <a class="hero__find" href="#mista" data-rec="R-UX-05">Знайти СТО у своєму місті</a>
+    </div>
+  </div>
+</Section>

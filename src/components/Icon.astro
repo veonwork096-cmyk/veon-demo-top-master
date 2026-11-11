@@ -1,0 +1,14 @@
+---
+// Functional line icons only (concept §«Зображення»): 2 px stroke, current text colour, always decorative (the label is text).
+type Name = "phone" | "telegram" | "menu" | "close" | "mail" | "search";
+interface Props { name: Name; size?: number; class?: string; }
+const { name, size = 22, class: cls } = Astro.props;
+---
+<svg class:list={["icon", cls]} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {name === "phone" && <path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11.5 11.5 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.7 2 2 0 0 1 5 3.5z" />}
+  {name === "telegram" && <path d="M21 4 3 11.2l6.2 2.1L18 7.5l-6.6 7.1.4 5.4 3.1-3.6 4.1 3.1z" />}
+  {name === "menu" && <path d="M4 7h16M4 12h16M4 17h16" />}
+  {name === "close" && <path d="M6 6l12 12M18 6 6 18" />}
+  {name === "mail" && <><rect x="3" y="5" width="18" height="14" /><path d="m3 6 9 7 9-7" /></>}
+  {name === "search" && <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></>}
+</svg>

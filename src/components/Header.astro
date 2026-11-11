@@ -1,0 +1,49 @@
+---
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+import FutureLink from "./FutureLink.astro";
+import { NAV, PHONES, PHONE, TELEGRAM, FUTURE } from "../data/site";
+---
+<header class="site-header" data-rec="R-UX-10">
+  <div class="container site-header__bar">
+    <Logo eager />
+    <nav class="site-nav" aria-label="Основна навігація">
+      <ul class="site-nav__list">
+        {NAV.map((n) => <li><a class="site-nav__link" href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="hdr-phone" href={PHONE.href} data-rec="R-UX-06">
+        <Icon name="phone" size={20} />
+        <span class="hdr-phone__num">{PHONE.label}</span>
+        <span class="hdr-phone__short">Дзвінок</span>
+      </a>
+      <a class="hdr-tg" href={TELEGRAM} target="_blank" rel="noopener noreferrer">
+        <Icon name="telegram" size={20} />
+        <span>Telegram</span>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-panel" data-menu-toggle>
+        <Icon name="menu" size={24} class="burger__open" />
+        <Icon name="close" size={24} class="burger__close" />
+        <span class="visually-hidden" data-menu-label>Відкрити меню</span>
+      </button>
+    </div>
+  </div>
+  <div class="menu-panel" id="menu-panel" hidden data-menu-panel>
+    <div class="container menu-panel__inner">
+      <nav aria-label="Меню">
+        <ul class="menu-panel__list">
+          {NAV.map((n) => <li><a class="menu-panel__link" href={n.href} data-menu-close>{n.label}</a></li>)}
+          <li class="menu-panel__future"><FutureLink note={FUTURE}>Статус замовлення</FutureLink></li>
+        </ul>
+      </nav>
+      <div class="menu-panel__contacts">
+        {PHONES.map((p) => <a class="menu-panel__phone" href={p.href}>{p.label}</a>)}
+        <a class="btn btn--outline btn--block" href={TELEGRAM} target="_blank" rel="noopener noreferrer">
+          <Icon name="telegram" size={20} class="btn__icon" />
+          <span class="btn__text">Написати в Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

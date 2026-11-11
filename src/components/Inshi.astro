@@ -1,0 +1,13 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import { OTHER_SERVICES, FUTURE } from "../data/site";
+---
+<Section id="inshi" rec="R-UX-04" class="section inshi surface-dark">
+  <div class="container inshi__grid">
+    <h2 class="inshi__title">Інші послуги</h2>
+    <ul class="inshi__list">
+      {OTHER_SERVICES.map((s) => <li><FutureLink note={FUTURE}>{s}</FutureLink></li>)}
+    </ul>
+  </div>
+</Section>

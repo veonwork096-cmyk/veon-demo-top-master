@@ -1,0 +1,137 @@
+/* Hallmark · shape: facade-bays · genre: modern-minimal · theme: custom · job: book · idea: "Чорний фасад, жовта вивіска: на темній стіні жовтим світиться лише вузол, місто і номер" · vibe: "нічний фасад СТО, жовта курсивна вивіска"
+ * paper: #16150F · accent: #FFD71B · display: Finlandica Headline · body: Libre Franklin · hero: H1-вивіска жовтим курсивом на темному, плашка дзвінка + Telegram, 3 факти · nav: темна шапка, 5 якорів, номер текстом · footer: темний, логотип звичайного розміру, FutureLink · imagery: client photos (фасад у mista) · signature: жовті курсивні вивіски й похила плашка MASTER
+ * axes: dark/display-italic-heavy/chromatic-yellow · posture: full-palette · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V (visual), фото клієнта лише одне й малої роздільності (кадр зі скриншота) — тримаємо його не ширше 460 px у картці Києва, решту несе типографіка-вивіска */
+/* Hallmark · waive 38ii · .display, h1, h2, h3 у site.css набрані Finlandica Headline italic 800 цілком, без окремого курсивного слова · логотип TOP MASTER і вивіска клієнта є курсивним жирним гротеском (W-F013, W-F016), signature утвердженої концепції — жовта курсивна вивіска, тому italic тут є фірмовою ознакою, а не прикрасою */
+/* Hallmark · waive 23 · жовтий на першому екрані 1280 — це H1 hero__title і кнопка-плашка, фон лишається #16150F · signature концепції: H1 набрано жовтим як вивіска TOP MASTER над боксами СТО (W-F016), posture full-palette; інших жовтих площин на першому екрані немає */
+/* Hallmark · waive 39b · a.btn 60px на 1440 (56px на телефоні) · висота плашки взята з утвердженої концепції (Ключові компоненти: 56/60 px) — плашка повторює пропорцію MASTER з логотипа, а дзвінок є головною дією сторінки */
+/* Hallmark · answered 25 · .dovira__quote p — одне речення відзнаки AvtoExpert, набране display-кеглем H3; 32ch тримає його в 4–5 рядків поруч із заголовком, основний текст сторінки має міру 40ch і ширше */
+/* Client design tokens: only from design/concept.md (veon-concept: colors, fonts). Breakpoints (used as literals in @media, CSS variables do not work there): 30em = 480, 48em = 768, 64em = 1024, 75em = 1200. */
+
+@font-face {
+  font-family: "Finlandica Headline";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../assets/fonts/finlandica-headline-cyrillic-800-italic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Finlandica Headline";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../assets/fonts/finlandica-headline-latin-800-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/libre-franklin-cyrillic-400-normal.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/libre-franklin-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/libre-franklin-cyrillic-600-normal.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/libre-franklin-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Metric fallbacks: keep line breaks close while the woff2 loads (CLS). */
+@font-face {
+  font-family: "Libre Franklin Fallback";
+  src: local("Arial");
+  size-adjust: 104%;
+  ascent-override: 92%;
+  descent-override: 24%;
+}
+@font-face {
+  font-family: "Finlandica Fallback";
+  src: local("Arial Narrow"), local("Arial");
+  size-adjust: 94%;
+  ascent-override: 98%;
+  descent-override: 26%;
+}
+
+:root {
+  /* Palette (concept §8 «Палітра»): фасад, бокс, вивіска, «день» */
+  --color-ink: #16150F;          /* фасад ночью: основний фон */
+  --color-ink-2: #23221B;        /* бокси */
+  --color-yellow: #FFD71B;       /* вивіска, головна дія на темному, площина poshta */
+  --color-paper: #F4F4EF;        /* «день»: фон; текст на темному */
+  --color-surface: #E8E7DF;      /* «день»: поверхня */
+  --color-muted-light: #57554B;  /* вторинний текст на світлому */
+  --color-muted-dark: #B5B2A3;   /* вторинний текст на темному */
+  --color-muted-yellow: #4A4012; /* вторинний текст на жовтому */
+  --color-line-dark: #77746A;    /* лінії на темному */
+  --color-line-light: #8A877A;   /* лінії на світлому */
+
+  /* Roles used by the demo base */
+  --color-bg: var(--color-ink);
+  --color-text: var(--color-paper);
+  --color-accent: var(--color-yellow);
+
+  /* Type */
+  --font-display: "Finlandica Headline", "Finlandica Fallback", system-ui, sans-serif;
+  --font-body: "Libre Franklin", "Libre Franklin Fallback", system-ui, sans-serif;
+  /* 390 → 1440: H1 40→120, H2 34→72, H3 28→56, lead 19→22, text 17→18, caption 15 */
+  --fs-h1: clamp(2.25rem, 0.75rem + 7vw, 7rem);
+  --fs-h2: clamp(2.125rem, 1.24rem + 3.62vw, 4.5rem);
+  --fs-h3: clamp(1.75rem, 1.1rem + 2.67vw, 3.5rem);
+  --fs-phone: clamp(2rem, 1.35rem + 2.67vw, 4rem);
+  --fs-lead: clamp(1.1875rem, 1.12rem + 0.29vw, 1.375rem);
+  --fs-text: clamp(1.0625rem, 1.04rem + 0.1vw, 1.125rem);
+  --fs-caption: 0.9375rem;
+  --lh-display: 0.97;
+  --lh-text: 1.55;
+
+  /* Space: шкала 8 */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2rem;
+  --s-5: 3rem;
+  --s-6: 4.5rem;
+  --s-7: 7.5rem;
+  --section-pad: clamp(4.5rem, 3.38rem + 4.57vw, 7.5rem);
+  --gap: clamp(1rem, 0.7rem + 0.8vw, 1.5rem);
+
+  /* Layout: 12 колонок, контейнер 1320, зовнішні поля 20 → 48 */
+  --space: clamp(1.25rem, 0.69rem + 2.67vw, 3rem);
+  --container: 1320px;
+  --header-h: 64px;
+  --mbar-h: 72px;
+  --tap: 48px;
+  --btn-h: 56px;
+  --stand-w: 6px;
+  --skew: -12deg;
+  --radius: 0;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 320ms;
+  --dur-fast: 160ms;
+  --dur-stand: 500ms;
+}
+@media (min-width: 64em) {
+  :root { --btn-h: 60px; }
+}
